@@ -1,0 +1,24 @@
+{% extends "appbuilder/general/model/edit.html" %}
+
+{% block edit_form %}
+    <div id="Home" class="tab-pane active">
+        {{ widgets.get('edit')(form_action=form_action)|safe }}
+        <script nonce="{{ baselib.get_nonce() }}">
+            var permissionSelect = document.querySelector('select[name="permissions"]');
+            var selectAllBtn = document.createElement('button');
+            selectAllBtn.textContent = 'Select All';
+            selectAllBtn.className = 'btn btn-default btn-sm';
+            selectAllBtn.style.marginTop = '10px';
+            selectAllBtn.onclick = function(e) {
+                e.preventDefault();
+                for (var i = 0; i < permissionSelect.options.length; i++) {
+                    permissionSelect.options[i].selected = true;
+                }
+                // Trigger change event to update the visual state
+                permissionSelect.dispatchEvent(new Event('change'));
+            };
+            permissionSelect.parentNode.insertBefore(selectAllBtn, permissionSelect.nextSibling);
+        </script>
+    </div>
+{% endblock %}
+

@@ -449,6 +449,7 @@ class RoleShowWidget(ShowWidget):
 
 class RoleModelView(ModelView):
     route_base = "/roles"
+    edit_template = "select_all_edit.html"
 
     list_title = lazy_gettext("List Roles")
     show_title = lazy_gettext("Show Role")
